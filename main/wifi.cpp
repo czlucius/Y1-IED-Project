@@ -58,15 +58,21 @@ String espData(String command, const int timeout, bool debug)
 
 
 
-// Archived functions, which won't be available due to headers
-void httpGet(String host, String path, String defFieldName, String defFieldVal, String port = "80", String customAppend = "") {
-  String sendData = "GET " + path + "?" + defFieldName + "=" + defFieldVal + "&" + customAppend;
-  Serial.println(sendData);
-  espData("AT+CIPMUX=1", 1000, ESP_DEBUG);       //Allow multiple connections
-  espData("AT+CIPSTART=0,\"HTTP\",\"" + host + "\"," + port, 1000, ESP_DEBUG);
-  espData("AT+CIPSEND=0," + String(sendData.length() + 4), 1000, ESP_DEBUG);
-  espSerial.find('>');
-  espSerial.println(sendData);
+void httpGet(String url) {
+  String req = "AT+HTTPCLIENT=GET,application/json,\"" + url + "\",,,HTTP_TRANSPORT_OVER_TCP"
+  espData(req);
 
-  espData("AT+CIPCLOSE=0", 1000, ESP_DEBUG);
-}
+
+
+//// Archived functions, which won't be available due to headers
+//void httpGet(String host, String path, String defFieldName, String defFieldVal, String port = "80", String customAppend = "") {
+//  String sendData = "GET " + path + "?" + defFieldName + "=" + defFieldVal + "&" + customAppend;
+//  Serial.println(sendData);
+//  espData("AT+CIPMUX=1", 1000, ESP_DEBUG);       //Allow multiple connections
+//  espData("AT+CIPSTART=0,\"HTTP\",\"" + host + "\"," + port, 1000, ESP_DEBUG);
+//  espData("AT+CIPSEND=0," + String(sendData.length() + 4), 1000, ESP_DEBUG);
+//  espSerial.find('>');
+//  espSerial.println(sendData);
+//
+//  espData("AT+CIPCLOSE=0", 1000, ESP_DEBUG);
+//}
