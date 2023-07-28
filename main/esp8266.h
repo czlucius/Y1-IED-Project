@@ -32,12 +32,13 @@
 //	Enable the DebugSerial to uncomment the following.
 //#define ESP8266_USE_DEBUGSERIAL
 
-
 #include "Arduino.h"
+
 #if defined(ESP8266_USE_SOFTWARESERIAL) || defined(ESP8266_USE_DEBUGSERIAL)
 // Directives at using software serial
 #include <SoftwareSerial.h>
 #endif
+
 
 #ifdef ESP8266_USE_SOFTWARESERIAL
 // Software serial buffer size assignment

@@ -1,8 +1,7 @@
 
-#include <LiquidCrystal_I2C.h>
 
 #include "motors.h"
-#include <Arduino.h>
+//#include <Arduino.h>
 
 #define BLACK 1
 #define WHITE 0
@@ -50,22 +49,6 @@ void Motors::brake() {
 }
 
 
-
-void displayTet(String text) {
-  //  lcUd.clear();
-  //  Serial.println("LCD is displaying: " + text);
-  //  lcUd.setCursor(0, 0); // position cursor at character 0, line 0
-  //  if (text.length() > 16) {
-  //    lcUd.print(text.substring(0, 16));
-  //    lcUd.setCursor(0, 1);
-  //    lcUd.print(text.substring(16));
-  //
-  //  } else {
-  //    lcUd.print(text);
-  //  }
-}
-
-
 String lineTrackNow(Motors motors, int ir1 = 14, int ir2 = 15) {
   int leftIR = digitalRead(ir1); // Reading and storing IR sensor 1 digital signal value
   int rightIR = digitalRead(ir2); // Reading and storing IR sensor 2 digital signal value
@@ -93,7 +76,6 @@ String lineTrackNow(Motors motors, int ir1 = 14, int ir2 = 15) {
     return "BW";
   } else {
     Serial.println("WW");
-    displayTet("WW");
 
 
     // The robot is out of the line. We shall just make it go forward.
